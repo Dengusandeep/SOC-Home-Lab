@@ -120,12 +120,23 @@ The dashboard provides a high-level view of endpoint event activity.
 
 ## 8. Project Documentation
 
-- `Architecture/` — Lab overview, network architecture, and VM configuration.
-- `Splunk detection/` — Log collection, forwarding, and process investigation.
-- `Incident-Report/` — RUN-002 investigation report.
-- `Dashboard/` — Splunk dashboard documentation.
-- `05-Evidence-screenshot/` — Screenshots supporting the lab work.
-- `Network Troubleshooting.txt` — Network troubleshooting notes.
+### Lab Architecture
+- [Lab Overview](01-Architecture/01-Lab-Overview.md)
+- [Network Architecture](01-Architecture/02-Network-Architecture.md)
+- [VM Configuration](01-Architecture/03-VM-Configuration.md)
+
+### Splunk & Detection
+- [Log Collection and Forwarding](<04-Splunk detection/01- Log Collection and Forwarding.md>)
+- [RUN-002 Process Investigation](04-Splunk%20detection/02-Process-Investigation.md)
+
+### Dashboard
+- [Splunk Dashboard Documentation](02-Dashboard/01-Splunk-Dashboard-Documentation.md)
+
+### Incident Report
+- [RUN-002 PowerShell Process Investigation](03-Incident-Report/RUN-002-PowerShell-Process-Investigation.md)
+
+### Evidence
+- [View Investigation Screenshots](05-Evidence-screenshot/)
 
 ## 9. Key Learnings
 
