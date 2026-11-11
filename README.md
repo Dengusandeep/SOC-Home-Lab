@@ -6,6 +6,32 @@ This project is a hands-on Security Operations Center (SOC) home lab built to pr
 
 The lab simulates a small Windows domain environment where endpoint activities are monitored using Sysmon and forwarded to Splunk for analysis.
 
+## SOC Investigation Workflow
+
+```text
+Windows 11 Endpoint
+        |
+        v
+      Sysmon
+        |
+        v
+ Windows Event Log
+        |
+        v
+Splunk Universal Forwarder
+        |
+        | TCP 9997
+        v
+ Splunk Enterprise
+        |
+        v
+  SPL Investigation
+        |
+        v
+ Dashboard & Incident Report
+
+ 
+ 
 ## 2. Lab Architecture
 
 The lab runs on VMware Workstation 17 using a Host-only network.
