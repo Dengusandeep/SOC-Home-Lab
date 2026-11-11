@@ -1,0 +1,108 @@
+Network Troubleshooting 
+
+ 1. Network architecture 
+Our lab contains 3 virtual machines. To run this Environment.
+
+1. DC01   (used as Active Directory and DNS)  and it's Ip is 192.168.50.10 
+2. WIN-CLIENT  (Used as the windows endpoint with Sysmon and UF) and it's Ip is 192.168.50.20
+3. SPLUNK UBUNTU  (It is use as a centralized SIEM) it's Ip is 192.168.50.30
+
+
+Network Configuration:
+ed
+Network: VMnet2
+Type: Host-Only
+Subnet: 192.168.50.0/24
+Subnet Mask: 255.255.255.0
+DHCP: Disabled                                                                                                    
+
+
+Problem Path:
+
+
+During testing our 3 virtual machines we have got some communications issues with each machine.3 machines are not connecting propelly with the Network Configuration. To communicate.
+So i disabled all network configuration 
+And assigned again with a clear information 
+used 192.168.50.10 IP as DC01
+used 192.168.50.20 IP as WIN-CLIENT
+used 192.168.50.30 IP as Splunk Ubuntu 
+Configured the subnet as 192.168.50.0/24 with subnet mask 255.255.255.0. No default gateway was required for communication within this subnet.
+And used this as vmnet2 in the VMware.
+And checked every ip using ipconfig to check its Ip and successfully got the ip's
+Then checked remaining 2 IP's in every VM Machine to conform weather 3 machines are communicating each other with in the subnet.
+
+Ubuntu Commands-Network Investigation
+
+Ip -br addr   (ip address-brief format)
+To check whether ubuntu had an ip address assigned to it's network interface (ens33)
+Used ip -br addr to inspect the Ubuntu network interface and verify its IP address. Initially, the interface had no IPv4 address. After troubleshooting, we confirmed that 192.168.50.30/24 was successfully assigned.
+
+ip route  (ip routing table)
+This tells Ubuntu:
+- 192.168.50.0/24 — Destination network.
+- dev ens33 — Use this network interface.
+- src 192.168.50.30 — Use this as the source IP.
+Used ip route to inspect the routing table and verify how Ubuntu reaches other devices in the 192.168.50.0/24 network.
+
+ip neigh (IP neighbor table.)
+When Ubuntu communicates with another device in its local network, it needs that device's MAC address.
+Used ip neigh to inspect the neighbor table and verify IP-to-MAC address mappings. This helped us investigate whether Ubuntu could discover other devices on the local network.
+
+nmcli device status  (NetworkManager Command-Line Interface — device status.)
+Ubuntu uses NetworkManager to manage network connections.
+Used nmcli device status to inspect the connection state of Ubuntu's network interface. This helped identify that ens33 was disconnected and verify that it was successfully reconnected.
+
+
+
+Windows commands — Network investigation
+
+
+ipconfig /all (IP Configuration — All details.)
+We needed to inspect the Windows client's network configuration.
+What is its IP address?
+What is its subnet mask?
+Which DNS server is configured?
+Is DHCP enabled?
+What is its MAC address?
+
+(IPv4 Address : 192.168.50.20
+Subnet Mask  : 255.255.255.0
+DNS Server   : 192.168.50.10
+DHCP Enabled : No)
+
+Used ipconfig /all to inspect the Windows client's complete network configuration and verify its IP address, subnet mask, DNS server, DHCP status, and MAC address.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
